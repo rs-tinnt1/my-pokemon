@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="w-full h-screen bg-primary flex flex-col items-center justify-center">
     <h1 class="text-7xl text-secondary">Poke Memories</h1>

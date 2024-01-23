@@ -1,20 +1,18 @@
 <template>
   <div class="w-full h-screen absolute top-0 left-0 z-2 bg-primary">
     <div
-      class="grid gap-[8px]"
-      :class="
-        `grid-cols-${Math.sqrt(totalOfBlocks)}`
-      "
+      class="grid gap-[8px] h-full  m-auto"
       :style="{
         width: `${(windowHeight*2/3 )+ (8*Math.sqrt(totalOfBlocks))}px`,
+        gridTemplateColumns: `repeat(${Math.sqrt(totalOfBlocks)}, 1fr)`,
       }"
     >
-      <card
+      <card-base
         v-for="(cardId, index) in cardsContext"
         :key="cardId"
         :cardId="cardId"
         :cardsMap="cardsMap"
-        :isOpen="cardsMap[cardId].includes(index)"
+        :isOpen="cardsMap[cardId]?.includes(index)"
         @onFlip="() => handleFlipCard(cardId, index)"
       />
     </div>
@@ -23,6 +21,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import CardBase from './CardBase.vue';
 
 const windowHeight = window.innerHeight
 
@@ -36,6 +35,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+console.log('CONTEXT', props.cardsContext)
 
 const generateCardsMap = (totalOfBlocks: number) => {
   const cardsMap: Record<number, Array<number>> = {}
