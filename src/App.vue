@@ -1,6 +1,6 @@
 <template>
   <HomeView v-if="page === EPage.HOME" @onStart="handleStart" />
-  <PlayView v-if="page === EPage.PLAY" :totalOfBlocks="settings.totalOfBlocks" :cardsContext="settings.cardsContext" />
+  <PlayView v-if="page === EPage.PLAY" :totalOfBlocks="settings.totalOfBlocks" :cardsContext="settings.cardsContext" @onFinish="handleFinish" />
 </template>
 
 <script setup lang="ts">
@@ -20,7 +20,6 @@ const settings = ref<ISettings>({
 
 const shuffled = (list: number[]) => list.sort(() => Math.random() - 0.5);
 
-console.log('page', page.value)
 /** handle setting and generate cards to start the game */
 const handleStart = (totalOfBlocks: number) => {
   settings.value.totalOfBlocks = totalOfBlocks;
@@ -33,5 +32,13 @@ const handleStart = (totalOfBlocks: number) => {
       const cards = [...firstCards, ...secondCards];
     settings.value.cardsContext = shuffled(cards);
     settings.value.startedAt = new Date().getTime();
+}
+
+/** handle finish game */
+const handleFinish = () => {
+  page.value = EPage.HOME;
+  settings.value.totalOfBlocks = 0;
+  settings.value.cardsContext = [];
+  settings.value.startedAt = null;
 }
 </script>
