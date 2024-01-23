@@ -1,6 +1,6 @@
 <template>
     <div
-        class="inline-block w-full h-full"
+        class="inline-block w-full h-full border-2 border-solid border-secondary rounded-2xl"
     >
         <div
         class="card__inner"
@@ -10,7 +10,7 @@
             <div
             class="card__content"
             :style="{
-                backgroundImage: `url('${require('@/assets/' + cardBackground)}')`,
+                backgroundImage: `url('assets/${cardBackground}')`,
             }"
             ></div>
         </div>
@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+// declare const require: any
 
 const props = defineProps({
     isOpen: {
@@ -37,7 +38,7 @@ const props = defineProps({
 })
 
 const emits = defineEmits<{
-    (e: 'onFlip'): void
+    (e: 'onFlip'): () => void
 }>()
 
 
@@ -46,7 +47,7 @@ const handleFlipCard = () => {
 }
 
 const cardBackground = computed(() => {
-    return props.isOpen ? `images/${props.cardId}.png` : '../assets/image/icon_back.png'
+    return props.isOpen ? `images/${props.cardId}.png` : 'images/icon_back.png'
 })
 //   export default {
 //     props: {
@@ -115,7 +116,7 @@ transform: rotateY(-180deg);
 position: absolute;
 width: 100%;
 height: 100%;
-backface-visibility: hidden;
+/* backface-visibility: hidden; */
 overflow: hidden;
 border-radius: 1rem;
 padding: 1rem;
