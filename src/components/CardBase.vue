@@ -1,9 +1,11 @@
 <template>
     <div
-        class="inline-block w-full h-full border-2 border-solid border-secondary rounded-2xl"
+        class="inline-block w-full h-full"
     >
         <div
-        class="card__inner"
+        class="card__inner border-2 border-solid border-secondary  rounded-2xl"
+        
+      :class="{ 'is-flipped': props.isOpen }"
         @click="handleFlipCard()"
         >
         <div class="card__face card__face--back">
