@@ -3,9 +3,9 @@
         class="inline-block w-full h-full"
     >
         <div
-        class="card__inner border-2 border-solid border-secondary  rounded-2xl"
-        
-      :class="{ 'is-flipped': props.isOpen }"
+        class="card__inner rounded-2xl"
+      :class="{ 'is-flipped': props.isOpen, 'bg-primary': !props.isOpen,
+            'bg-secondary': props.isOpen, }"
         @click="handleFlipCard()"
         >
         <div class="card__face card__face--back">
@@ -51,48 +51,7 @@ const handleFlipCard = () => {
 const cardBackground = computed(() => {
     return props.isOpen ? `images/${props.cardId}.png` : 'images/icon_back.png'
 })
-//   export default {
-//     props: {
-//       card: {
-//         type: [Array, String, Number, Object],
-//       },
-//       cardsContext: {
-//         type: Array,
-//         default: function () {
-//           return [];
-//         },
-//       },
-//       imgBackFaceUrl: {
-//         type: String,
-//         required: true,
-//       },
-//       rules: {
-//         type: Array,
-//       },
-//     },
-//     data() {
-//       return {
-//         isFlipped: false,
-//         isDisabled: false,
-//       };
-//     },
-//     methods: {
-//       onToggleFlipCard() {
-//         if (this.rules.length >= 2) return;
-//         if (this.isDisabled) return;
-//         this.isFlipped = !this.isFlipped;
-//         if (this.isFlipped) this.$emit("onFlip", this.card);
-//       },
-  
-//       onFlipBackCard() {
-//         this.isFlipped = false;
-//       },
-  
-//       onEnabledDisabledMode() {
-//         this.isDisabled = true;
-//       },
-//     },
-//   };
+
 </script>
 
 <style scoped>

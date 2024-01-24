@@ -1,7 +1,7 @@
 export enum EPage {
   HOME,
   PLAY,
-  RESULT,
+  FINISH,
 }
 
 export interface ISettings {
